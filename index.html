@@ -1,0 +1,100 @@
+<html>
+    <head><title>Js Small Game !</title>
+
+    <style>
+        *{
+            height: 20vh;
+        }
+        
+
+        #shape{
+            
+            background-color: aqua;
+            position: relative;
+            top: 150px;
+            left: 120px;
+            border: 5px solid rgb(251, 0, 42);
+        }
+        p{
+            color: white;
+            font-size: 50px;
+            text-align: center;
+        }
+    </style>
+
+    </head>
+    <body bgcolor="black">
+        <p id="demo"></p><br>
+        <div id="shape" onclick="myfunc()"></div><br>
+        
+        <script>
+
+            const sound = new Audio();
+            
+
+            var start=new Date().getTime();
+
+            function myfunc(){
+                  document.getElementById("shape").style.display="none";
+                  var end = new Date().getTime();
+                  var time =(end - start)/1000;
+                  document.getElementById("demo").innerHTML="You Got "+time+"s";
+                  sound.src="kill1.mp3";
+                  shapeAppearT()
+            
+                  
+            }
+
+            function shapeAppearT(){
+                setTimeout(shapeAppear,Math.random()*2000);
+            }
+            
+
+            function shapeAppear(){
+                var top=Math.random()*580;
+                var left=Math.random()*850;
+                var width=Math.random()*100;
+                
+                document.getElementById("shape").style.height=width + "px";
+                document.getElementById("shape").style.width=width + "px";
+
+                if(Math.random()>0.5){
+                    document.getElementById("shape").style.borderRadius="50%";
+                }else{
+                    document.getElementById("shape").style.borderRadius="0%";
+                }
+
+                document.getElementById("shape").style.display="block";
+                document.getElementById("shape").style.borderColor=getRandomColor();
+                document.getElementById("shape").style.backgroundColor=getRandomColor();
+                document.getElementById("shape").style.top=top+"px";
+                document.getElementById("shape").style.left=left+"px";
+                start=new Date().getTime();
+            }
+            shapeAppearT();
+        
+            
+            function getRandomColor(){
+                    var letters = '0123456789ABCDEF';
+                    var color = '#';
+                    for (var i = 0; i < 6; i++) {
+                        color += letters[Math.floor(Math.random() * 16)];
+                    }
+                    return color;
+            }
+            var play =document.getElementById("shape");
+            function playmusic(){
+                var audio = new Audio("kill1.mp3");
+                audio.play();
+            }
+            play.addEventListener("click",playmusic);
+
+
+        </script>
+        
+       
+        
+
+
+    </body>
+</html>
